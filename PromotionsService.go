@@ -10,6 +10,7 @@ import (
 	"net/http"
 	_ "net/http/pprof"
 )
+
 var decoder = gorilla.NewDecoder()
 
 type User struct {
@@ -27,7 +28,7 @@ func main() {
 	//go func() {
 	//	log.Println(http.ListenAndServe("localhost:8080", nil))
 	//}()
-	err := http.ListenAndServe(":5000", mux)
+	err := http.ListenAndServe(":8080", mux)
 	log.Fatal(err)
 }
 
@@ -37,10 +38,10 @@ func getPromotions(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Bad Input", http.StatusBadRequest)
 		return
 	}
-	
+
 	var inputUser User
 	err = decoder.Decode(&inputUser, r.Form)
-	
+
 	if err != nil {
 		http.Error(w, "Bad Input", http.StatusBadRequest)
 		return
