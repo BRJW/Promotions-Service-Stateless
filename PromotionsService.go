@@ -22,7 +22,7 @@ type User struct {
 }
 
 func main() {
-	fmt.Println("Service started")
+	fmt.Println("Service started!")
 	mux := http.NewServeMux()
 	mux.HandleFunc("/Promotions", getPromotions)
 	//go func() {
